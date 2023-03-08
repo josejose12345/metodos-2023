@@ -34,7 +34,7 @@ function x = backward_substitution(U, b)
           title("Planos ecuaciones del sistema");
 
           hold on
-          y2 = (- U(2,2)*y + b(2)) / U(2,3);
+          y2 = ( b(2)) / U(2,2);
           plot(x,y2);
 
           legend({'Ecuación 1','Ecuación 2'},'Location','southwest')

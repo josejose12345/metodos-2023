@@ -32,6 +32,12 @@ else
             M(i,j) = input(sprintf('Ingrese la entrada (%d,%d): ', i, j));
         end
     end
+    
+    haySol = input(sprintf('Tiene la solución exacta del sistema? Si la tiene ingrese un 1, de lo contrario ingrese un 0', i));
+    if haySol==1
+        for i = 1:n
+            sol(i) = input(sprintf('Ingrese la solución de x%d si la tiene ', i));
+        end  
 end
 
 % Pedir al usuario las entradas del vector del lado derecho

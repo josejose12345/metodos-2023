@@ -31,13 +31,7 @@ else
         for j = 1:n
             M(i,j) = input(sprintf('Ingrese la entrada (%d,%d): ', i, j));
         end
-    end
-    
-    haySol = input(sprintf('Tiene la solución exacta del sistema? Si la tiene ingrese un 1, de lo contrario ingrese un 0', i));
-    if haySol==1
-        for i = 1:n
-            sol(i) = input(sprintf('Ingrese la solución de x%d si la tiene ', i));
-        end  
+    end  
 end
 
 % Pedir al usuario las entradas del vector del lado derecho
@@ -52,7 +46,8 @@ if matrix_type == 'U'
 elseif matrix_type == 'L'
     x = forward_substitution(L, b);
 else
-    x = jacobi(M, b);    
+    init = input('Ingresa el vector de aproximación inicial entre []:');
+    x = metodo_jacobi(M, b, init);    
 end
 
 % Imprimir el vector solución

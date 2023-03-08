@@ -57,16 +57,15 @@ function x = backward_substitution(U, b)
     
     iterations = 1;
     
-    for i = n-1:-1:1
+    for i = n - 1 : -1 : 1
 
         horzX = transpose(x);
         fprintf('\n%7d       %s', iterations, mat2str(horzX));
 
-        x(i) = (b(i) - U(i,i+1:n)*x(i+1:n)) / U(i,i);
+        x(i) = (b(i) - U(i, i+1:n) * x(i+1:n)) / U(i, i);
         iterations = iterations + 1;
     end
 
-    horzX = transpose(x);
-    fprintf('\n%7d       %s\n', iterations, mat2str(horzX));
+    fprintf('\n%7d       %s\n', iterations, mat2str(transpose(x)));
 
 end

@@ -15,7 +15,9 @@ if matrix_type == 'U'
         for j = i:n
             U(i,j) = input(sprintf('Ingrese la entrada (%d,%d): ', i, j));
         end
-    end    
+    end
+    fprintf("Matriz dada:")
+    fprintf(U)    
 elseif matrix_type == 'L'
     % Si se utiliza una matriz triangular inferior, pedir las entradas del triángulo inferior
     L = zeros(n, n);
@@ -24,6 +26,8 @@ elseif matrix_type == 'L'
             L(i,j) = input(sprintf('Ingrese la entrada (%d,%d): ', i, j));
         end
     end
+    fprintf("Matriz dada:")
+    fprintf(L)
 else
     % Se crea el sistema de ecuaciones en formato de matriz
     M = zeros(n, n);
@@ -31,7 +35,9 @@ else
         for j = 1:n
             M(i,j) = input(sprintf('Ingrese la entrada (%d,%d): ', i, j));
         end
-    end  
+    end 
+    fprintf("Matriz dada:")
+    fprintf(M) 
 end
 
 % Pedir al usuario las entradas del vector del lado derecho

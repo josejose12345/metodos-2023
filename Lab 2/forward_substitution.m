@@ -10,17 +10,17 @@ function x = forward_substitution(L, b)
     % Se verifica que se tienen entre dos y tres variables, por lo que es posible graficar el sistema
         if n==3 %Se grafican superficies si hay tres variables
           [y,z] = meshgrid(-5:1:5);
-          x1 = (b(1)) / U(1,1);
+          x1 = (b(1)) / L(1,1);
           h = -x1+y+z;
           mesh (h);
           xlabel('X'), ylabel('Y'), zlabel('Z');
           title("Planos ecuaciones del sistema");
 
           hold on
-          x2 = (-U(2,2)*y + b(1)) / U(2,1);
+          x2 = (-L(2,2)*y + b(1)) / L(2,1);
           surf (x2,y,z);
           
-          z3 = (-U(3,2)*y - U(3,3)*z + b(3)) / U(3,1);
+          z3 = (-L(3,2)*y - L(3,3)*z + b(3)) / L(3,1);
           surf (x3,y,z);
 
           legend('Ecuación 1','Ecuación 2', 'Ecuación 3') %Se grafican superficies si hay tres variables
@@ -29,13 +29,13 @@ function x = forward_substitution(L, b)
           
         elseif n==2
           y = -10:0.1:10;
-          x1 = (b(1)) / U(1,1);
+          x1 = (b(1)) / L(1,1);
           plot (x1,y);
           xlabel('X'), ylabel('Y');
           title("Planos ecuaciones del sistema");
 
           hold on
-          x2 = (- U(2,2)*y + b(2)) / U(2,1);
+          x2 = (- L(2,2)*y + b(2)) / L(2,1);
           plot(x2,y);
 
           legend({'Ecuación 1','Ecuación 2'},'Location','southwest')

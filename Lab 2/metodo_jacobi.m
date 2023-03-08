@@ -18,8 +18,48 @@ function x = metodo_jacobi (M, b, init) %Método de iteración de Jacobi para re
     tol = input('Ingresa la tolerancia para el criterio de convergencia:');
     m = input('Ingresa el número máximo de iteraciones:');
 
+    %Graficar el sistema si es 2d o 3d
+    if(n < 4)
+    % Se verifica que se tienen entre dos y tres variables, por lo que es posible graficar el sistema
+        if n==3 %Se grafican superficies si hay tres variables
+          [xe,y] = meshgrid(-5:1:5);
+          z1 = (-M(1,1)*xe -M(1,2)*y + b(1)) /M(1,3);
+          surf (xe,y,z1);
+          xlabel('X'), ylabel('Y'), zlabel('Z');
+          title("Planos ecuaciones del sistema");
+
+          hold on
+          z2 = (-M(1,1)*xe - M(1,2)*y + b(1)) / M(1,3);
+          surf (xe,y,z2);
+          
+          z3 = (-M(1,1)*xe - M(1,2)*y + b(1)) / M(1,3);
+          h = xe+y-z3;
+          mesh (h);
+
+          legend('Ecuación 1','Ecuación 2', 'Ecuación 3') %Se grafican superficies si hay tres variables
+
+          hold off
+          
+        elseif n==2
+          x = -10:0.1:10;
+          y1 = (-M(1,1)*x + b(1)) / M(1,2);
+          plot (x,y1);
+          xlabel('X'), ylabel('Y');
+          title("Planos ecuaciones del sistema");
+
+          hold on
+          y2 = (-M(2,1)*x + b(1)) / M(2,2);
+          plot(x,y2);
+
+          legend({'Ecuación 1','Ecuación 2'},'Location','southwest')
+
+          hold off
+        end
+        
+    end
+
     %Creación encabezado de la tabla de iteraciones
-    enc = ['| Iteración '];
+    enc = ['| Iteración ', '| Norma'];
     for k = 1:n
       a = num2str(k);
       enc = [enc , '|x' a];
@@ -33,16 +73,20 @@ function x = metodo_jacobi (M, b, init) %Método de iteración de Jacobi para re
         end
         %Detiene el proceso cuando la norma entre los dos vectores es menor que
         %la tolerancia.
-        if norm(z-x,inf)<tol
-            return
-        end
+        norma=norm(z-x);
+        fprintf('\n%7d       %s', iterations, norma, mat2str(x));
         
-        fprintf('\n la solución del sistema en la iteración %4.0f\n',k)
-
-        for i=n
-            fprintf('    x(%1.0f)=%6.8f\n',i,x(i))
+        if (norma <= tol)
+            fprintf('\n  EL METODO CONVERGE\n',k)
+            break
+        else            
+            centinela = 1;
         end
-    end    
+    end 
+    if(centinela==1)
+        fprintf('\n El método diverge en %2i iteraciones posiblemente\', tol)
+        fprintf('  DAR UN MAYOR NUMERO DE ITERACIONES\n')
+    end   
 end
 
 

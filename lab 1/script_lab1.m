@@ -5,7 +5,7 @@
 %En caso de que se genere un error con la instalación de symbolic, verificar que Python esté instalado en el dispositivo
 
 %Método de biseccion de Bolzano, Ejecución con ejemplo dado:
-fprintf("\nEjemplo dado, método de bisección de Bolzano:\n")
+fprintf("\nEjemplo dado, método de bisección de Bolzhano:\n")
 fprintf("\nFunción: x*sin(x)-1, intervalo: [0,2]\n")
 bisectionMethod(0, 2, @(x) x*sin(x)-1, 100E-8)
 

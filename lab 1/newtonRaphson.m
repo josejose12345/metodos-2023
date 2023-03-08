@@ -1,7 +1,7 @@
 function result = newtonRaphson(f, x0, tol)
     # Newton-Raphson method for finding the root of a function
 
-    # @param f: function to find the root of
+    # @param f: anonymous function to find the root of
     # @param x0: initial guess
     # @param tol: tolerance criteria
     # @return: the root of the function
@@ -9,8 +9,9 @@ function result = newtonRaphson(f, x0, tol)
     x_n = x0; # Set x_n as the initial guess
     iterations = 0;
     
-    syms x; 
-    # Take the derivative of the input function
+    syms x; # Declare x as a symbolic variable
+
+    #  Create an anonymous function for the derivative of f
     df = matlabFunction(diff(f(x)));  
 
     # Iterate till the tolerance criteria is met and no more than 10 million iterations

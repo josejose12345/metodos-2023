@@ -3,7 +3,7 @@ function result = bisectionMethod(lower_bound, upper_bound, f, tol)
     #
     # @param lower_bound: lower bound of the interval
     # @param upper_bound: upper bound of the interval
-    # @param f: function whose zero we are looking for
+    # @param f: anonymous function whose zero we are looking for
     # @param tol: tolerance for the interval
     # @return: the midpoint of the final interval
 
@@ -12,8 +12,8 @@ function result = bisectionMethod(lower_bound, upper_bound, f, tol)
         return
     end
 
-    iterations = 1;
-    middle = 0;
+    iterations = 0;
+    middle = 0; # Current midpoint of the interval
 
     # Format the table output header
     fprintf('|  n  | lower_bound |   middle   | upper_bound |     f_c     |\n');
@@ -26,6 +26,10 @@ function result = bisectionMethod(lower_bound, upper_bound, f, tol)
         
         # Evaluate the function at the midpoint
         f_c = f(middle);
+        # Just for formatting a sample output as seen in class
+        if iterations <= 10
+            fprintf('%5d %12.5f %12.5f %12.5f %12.5f\n', iterations, lower_bound, middle, upper_bound, f_c);
+        end
 
         if f(lower_bound) * f_c < 0 # There is a zero in [a, c]
             upper_bound = middle; # New interval is [a, c]
@@ -38,10 +42,6 @@ function result = bisectionMethod(lower_bound, upper_bound, f, tol)
 
         iterations = iterations + 1;
         
-        # Just for formatting a sample output as seen in class
-        if iterations <= 10
-            fprintf('%5d %12.5f %12.5f %12.5f %12.5f\n', iterations, lower_bound, middle, upper_bound, f_c);
-        end
     end
     result = middle; # Return the midpoint of the final interval
 end
